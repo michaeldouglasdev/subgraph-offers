@@ -49,8 +49,8 @@ export type Price = {
 
 export type Product = {
   __typename?: 'Product';
-  id: Scalars['ID']['output'];
   offers: Array<Maybe<Offer>>;
+  sku: Scalars['ID']['output'];
 };
 
 export type Query = {
@@ -198,9 +198,9 @@ export type PriceResolvers<ContextType = Context, ParentType extends ResolversPa
 }>;
 
 export type ProductResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Product'] = ResolversParentTypes['Product']> = ResolversObject<{
-  __resolveReference?: ReferenceResolver<Maybe<ResolversTypes['Product']>, { __typename: 'Product' } & GraphQLRecursivePick<ParentType, {"id":true}>, ContextType>;
-  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  __resolveReference?: ReferenceResolver<Maybe<ResolversTypes['Product']>, { __typename: 'Product' } & GraphQLRecursivePick<ParentType, {"sku":true}>, ContextType>;
   offers?: Resolver<Array<Maybe<ResolversTypes['Offer']>>, ParentType, ContextType>;
+  sku?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 

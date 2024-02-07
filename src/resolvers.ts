@@ -8,5 +8,10 @@ export const resolvers: Resolvers = {
     offers: () => {
       return offersService.list();
     }
+  },
+  Product: {
+    offers: ({ sku }) => {
+      return offersService.listBySku(sku);
+    }
   }
 }

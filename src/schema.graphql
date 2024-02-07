@@ -30,7 +30,7 @@ enum OfferType {
   GRM
 }
 
-type Product @key(fields: "id", resolvable: false) {
-  id: ID!
+type Product @key(fields: "sku") {
+  sku: ID!
   offers: [Offer]!
 }
