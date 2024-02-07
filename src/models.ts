@@ -3,6 +3,7 @@ export interface OffersModel {
   active: boolean;
   description: string;
   productsSku: string[];
+  createdByMD: boolean;
 }
 
 export interface ProductModel {

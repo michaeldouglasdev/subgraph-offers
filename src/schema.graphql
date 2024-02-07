@@ -15,6 +15,7 @@ type Offer {
   active: Boolean!
   description: String!
   type: OfferType
+  createdByMD: Boolean!
 }
 
 type OfferLmpm {
