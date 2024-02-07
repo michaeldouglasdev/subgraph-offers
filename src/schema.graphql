@@ -1,0 +1,36 @@
+extend schema @link(url: "https://specs.apollo.dev/federation/v2.0", import: ["@key"])
+
+type Query {
+  offers: [Offer]!
+}
+
+interface MutationResponse {
+  code: Int!
+  message: String!
+  success: Boolean!
+}
+
+type Offer {
+  id: ID!
+  active: Boolean!
+  description: String!
+  type: OfferType
+}
+
+type OfferLmpm {
+  price: Price!
+}
+
+type Price {
+  value: String!
+}
+
+enum OfferType {
+  LMPM,
+  GRM
+}
+
+type Product @key(fields: "id") {
+  id: ID!
+  offers: [Offer]!
+}
