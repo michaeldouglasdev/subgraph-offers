@@ -31,6 +31,6 @@ enum OfferType {
 }
 
 type Product @key(fields: "sku") {
-  sku: ID!
+  sku: String!
   offers: [Offer]!
 }
