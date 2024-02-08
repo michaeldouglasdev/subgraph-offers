@@ -1,4 +1,4 @@
-extend schema @link(url: "https://specs.apollo.dev/federation/v2.0", import: ["@key"])
+extend schema @link(url: "https://specs.apollo.dev/federation/v2.0", import: ["@key", "@shareable"])
 
 type Query {
   offers: [Offer]!
@@ -22,8 +22,9 @@ type OfferLmpm {
   price: Price!
 }
 
-type Price {
+type Price @shareable {
   value: Int!
+  label: String!
 }
 
 enum OfferType {
