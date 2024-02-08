@@ -34,6 +34,5 @@ enum OfferType {
 
 type Product @key(fields: "sku") {
   sku: String!
-  name: String! @external
   offers: [Offer]!
 }
