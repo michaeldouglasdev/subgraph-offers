@@ -10,7 +10,7 @@ interface MutationResponse {
   success: Boolean!
 }
 
-type Offer {
+type Offer @key(fields: "id") {
   id: ID!
   active: Boolean!
   description: String!
