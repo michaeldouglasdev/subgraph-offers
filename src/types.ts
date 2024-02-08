@@ -1,5 +1,5 @@
 import { GraphQLResolveInfo } from 'graphql';
-import { OffersModel } from './models';
+import { OfferModel } from './models';
 import { Context } from './context';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -8,6 +8,7 @@ export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: 
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
 export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
+export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: { input: string; output: string; }
@@ -27,9 +28,9 @@ export type MutationResponse = {
 export type Offer = {
   __typename?: 'Offer';
   active: Scalars['Boolean']['output'];
-  createdByMD: Scalars['Boolean']['output'];
   description: Scalars['String']['output'];
   id: Scalars['ID']['output'];
+  price: Price;
   type?: Maybe<OfferType>;
 };
 
@@ -45,7 +46,7 @@ export enum OfferType {
 
 export type Price = {
   __typename?: 'Price';
-  value: Scalars['String']['output'];
+  value: Scalars['Int']['output'];
 };
 
 export type Product = {
@@ -150,12 +151,12 @@ export type ResolversTypes = ResolversObject<{
   Int: ResolverTypeWrapper<Scalars['Int']['output']>;
   String: ResolverTypeWrapper<Scalars['String']['output']>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
-  Offer: ResolverTypeWrapper<Offer>;
+  Offer: ResolverTypeWrapper<OfferModel>;
   ID: ResolverTypeWrapper<Scalars['ID']['output']>;
   OfferLmpm: ResolverTypeWrapper<OfferLmpm>;
   OfferType: OfferType;
   Price: ResolverTypeWrapper<Price>;
-  Product: ResolverTypeWrapper<Product>;
+  Product: ResolverTypeWrapper<Omit<Product, 'offers'> & { offers: Array<Maybe<ResolversTypes['Offer']>> }>;
   Query: ResolverTypeWrapper<{}>;
 }>;
 
@@ -165,11 +166,11 @@ export type ResolversParentTypes = ResolversObject<{
   Int: Scalars['Int']['output'];
   String: Scalars['String']['output'];
   Boolean: Scalars['Boolean']['output'];
-  Offer: Offer;
+  Offer: OfferModel;
   ID: Scalars['ID']['output'];
   OfferLmpm: OfferLmpm;
   Price: Price;
-  Product: Product;
+  Product: Omit<Product, 'offers'> & { offers: Array<Maybe<ResolversParentTypes['Offer']>> };
   Query: {};
 }>;
 
@@ -182,9 +183,9 @@ export type MutationResponseResolvers<ContextType = Context, ParentType extends 
 
 export type OfferResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Offer'] = ResolversParentTypes['Offer']> = ResolversObject<{
   active?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
-  createdByMD?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
   description?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  price?: Resolver<ResolversTypes['Price'], ParentType, ContextType>;
   type?: Resolver<Maybe<ResolversTypes['OfferType']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
@@ -195,7 +196,7 @@ export type OfferLmpmResolvers<ContextType = Context, ParentType extends Resolve
 }>;
 
 export type PriceResolvers<ContextType = Context, ParentType extends ResolversParentTypes['Price'] = ResolversParentTypes['Price']> = ResolversObject<{
-  value?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  value?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 

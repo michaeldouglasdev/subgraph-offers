@@ -10,7 +10,7 @@ const codegen: CodegenConfig = {
         useIndexSignature: true,
         contextType: './context#Context',
         mappers: {
-          Offers: './models#OffersModel'
+          Offer: './models#OfferModel'
         }
       }
     }

@@ -15,7 +15,7 @@ type Offer {
   active: Boolean!
   description: String!
   type: OfferType
-  price: Price!;
+  price: Price!
 }
 
 type OfferLmpm {
