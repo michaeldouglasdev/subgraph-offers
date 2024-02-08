@@ -15,7 +15,7 @@ type Offer {
   active: Boolean!
   description: String!
   type: OfferType
-  createdByMD: Boolean!
+  price: Price!;
 }
 
 type OfferLmpm {
@@ -23,7 +23,7 @@ type OfferLmpm {
 }
 
 type Price {
-  value: String!
+  value: Int!
 }
 
 enum OfferType {
