@@ -20,9 +20,11 @@
     "@apollo/server": "^4.10.0",
     "@apollo/subgraph": "^2.7.1",
     "@faker-js/faker": "^8.4.0",
+    "axios": "^1.6.7",
     "dotenv": "^16.4.1",
     "graphql": "^16.8.1",
     "graphql-tag": "^2.12.6",
+    "json-server": "^1.0.0-alpha.23",
     "tsx": "^4.7.0"
   }
 }

@@ -5,13 +5,13 @@ const offersService = new OffersService();
 
 export const resolvers: Resolvers = {
   Query: {
-    offers: () => {
-      return offersService.list();
+    offers: async () => {
+      return await offersService.list();
     }
   },
   Product: {
-    offers: ({ sku }) => {
-      return offersService.listBySku(sku);
+    offers: async ({ sku }) => {
+      return await offersService.listBySku(sku);
     }
   }
 }

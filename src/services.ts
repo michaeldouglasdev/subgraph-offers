@@ -1,3 +1,4 @@
+import { Datasource } from "./datasource";
 import { OfferModel } from "./models";
 
 const OFFERS: OfferModel[] = [
@@ -38,11 +39,14 @@ const OFFERS: OfferModel[] = [
 
 export class OffersService {
 
-  list(): OfferModel[] {
-    return OFFERS;
+  async list(): Promise<OfferModel[]> {
+    const offers = await new Datasource().get<OfferModel[]>('/offers');
+    return offers;
   }
 
-  listBySku(sku: string): OfferModel[] {
-    return OFFERS.filter(offer => offer.productsSku.find(productSku => productSku === sku)!)!;
+  async listBySku(sku: string): Promise<OfferModel[]> {
+    const offers = await new Datasource().get<OfferModel[]>('/offers');
+
+    return offers.filter(offer => offer.productsSku.find(productSku => productSku === sku)!)!;
   }
 }
